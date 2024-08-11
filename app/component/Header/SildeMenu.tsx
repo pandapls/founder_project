@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import ArrowButton from '../common/ArrowButton';
 interface SildeMenuProps {
   isOpen: boolean;
+  onClose?: () => void;
 }
 
 interface MenuItem {
@@ -40,7 +41,7 @@ const menuItems: MenuItem[] = [
   { label: 'Education', content: [] },
 ];
 
-const SildeMenu: FC<SildeMenuProps> = ({ isOpen }) => {
+const SildeMenu: FC<SildeMenuProps> = ({ isOpen, onClose }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleMenu = (index: number) => {
@@ -71,7 +72,7 @@ const SildeMenu: FC<SildeMenuProps> = ({ isOpen }) => {
             ></path>
           </svg>
         </span>
-        <span>
+        <span onClick={onClose} className='cursor-pointer'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='16'

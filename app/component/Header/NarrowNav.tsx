@@ -13,7 +13,7 @@ const NarrowNav = () => {
         </button>
         <span >Browse</span>
       </div>
-      <SildeMenu isOpen={isOpen} />
+      <SildeMenu isOpen={isOpen} onClose={handleCloseOverlay} />
       <Overlay isOpen={isOpen} onClose={handleCloseOverlay} />
     </>
   )
