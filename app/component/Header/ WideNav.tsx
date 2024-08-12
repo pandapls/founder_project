@@ -23,30 +23,6 @@ const WideNav = () => {
     setOpenButton(null);
   };
 
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      const nav = navRef.current;
-      const hover = hoverRef.current;
-      const { clientX, clientY } = event;
-
-      if (nav && hover) {
-        const navRect = nav.getBoundingClientRect();
-        const hoverRect = hover.getBoundingClientRect();
-        const isInNav = clientX >= navRect.left && clientX <= navRect.right && clientY >= navRect.top && clientY <= navRect.bottom;
-        const isInHover = clientX >= hoverRect.left && clientX <= hoverRect.right && clientY >= hoverRect.top && clientY <= hoverRect.bottom;
-
-        if (!isInNav && !isInHover) {
-          handleMouseLeave();
-        }
-      }
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
 
   return (
     <>
@@ -85,7 +61,7 @@ const WideNav = () => {
       </nav>
 
 
-      <WdieNavHover ref={hoverRef} openButton={openButton} />
+      <WdieNavHover onMouseLeave={handleMouseLeave} openButton={openButton} />
     </>
   );
 };

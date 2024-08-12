@@ -1,9 +1,10 @@
 import Image from 'next/image';
-import { forwardRef } from 'react';
+import { FC } from 'react';
 import { ButtonKey } from './ WideNav';
 
 interface WdieNavHoverProps {
   openButton: ButtonKey | null;
+  onMouseLeave: () => void;
 }
 
 type Data = {
@@ -12,8 +13,8 @@ type Data = {
   }[];
 };
 
-const WdieNavHover = forwardRef<HTMLDivElement, WdieNavHoverProps>(
-  ({ openButton }, ref) => {
+const WdieNavHover: FC<WdieNavHoverProps> =
+  ({ openButton, onMouseLeave }) => {
     const data: Data = {
       [ButtonKey.DesignResources]: [
         {
@@ -360,7 +361,7 @@ const WdieNavHover = forwardRef<HTMLDivElement, WdieNavHoverProps>(
           bg-[#fcfcfc]
           ${openButton ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'}`
         }
-        ref={ref}
+        onMouseLeave={onMouseLeave}
       >
         <div
           className={
@@ -396,6 +397,5 @@ const WdieNavHover = forwardRef<HTMLDivElement, WdieNavHoverProps>(
       </div>
     );
   }
-);
-WdieNavHover.displayName = 'WdieNavHover';
+
 export default WdieNavHover;
